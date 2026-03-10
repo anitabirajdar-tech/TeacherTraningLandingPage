@@ -1,0 +1,117 @@
+.who-can-join {
+  background: linear-gradient(160deg, #fafbff 0%, #ede9f8 100%);
+}
+
+.who-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.eligibility-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.eligibility-card {
+  background: var(--white);
+  padding: 0;
+  border-radius: var(--border-radius);
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.eligibility-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #ff6b35, #764ba2);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.eligibility-card:hover::before {
+  transform: scaleX(1);
+}
+
+.eligibility-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-lg);
+}
+
+.eligibility-icon {
+  font-size: 3.5rem;
+  margin: 25px 0 15px;
+}
+.eligibility-icon img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.eligibility-card h3 {
+  font-size: 1.2rem;
+  color: var(--secondary-color);
+  margin-bottom: 10px;
+  padding: 0 20px;
+}
+
+.eligibility-card p {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  padding: 0 20px 25px;
+}
+
+.no-experience-banner {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+  color: white;
+  padding: 30px 40px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+}
+
+.banner-icon {
+  font-size: 3rem;
+  flex-shrink: 0;
+}
+
+.banner-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.banner-content p {
+  font-size: 1.05rem;
+  opacity: 0.95;
+}
+
+@media (max-width: 968px) {
+  .eligibility-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .eligibility-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .no-experience-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 25px;
+  }
+}

@@ -1,0 +1,151 @@
+/* =============================================
+   TESTIMONIALS — 3 static cards
+   ============================================= */
+
+.testimonials {
+  background: #eef2f9;
+  padding: 60px 0;
+}
+
+.tm-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #0a1e5e;
+  margin-bottom: 40px;
+}
+
+.tm-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.tm-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.tm-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.14);
+}
+
+.tm-photo-wrap {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+}
+
+.tm-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.tm-photo-fallback {
+  display: none;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  background: linear-gradient(135deg, #e8edf8, #d0d8f0);
+}
+
+/* video embed responsive container */
+.tm-video {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 */
+  overflow: hidden;
+  background: #000;
+}
+.tm-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.tm-quote {
+  padding: 18px 20px 12px;
+  font-size: 0.92rem;
+  color: #333;
+  line-height: 1.6;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.tm-author {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 20px 18px;
+  font-size: 0.85rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.tm-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .tm-cards {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .tm-title { font-size: 1.5rem; }
+  .tm-photo-wrap { height: 180px; }
+}
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+
+@media (max-width: 968px) {
+  .testimonial-card {
+    min-width: 300px;
+    max-width: 340px;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonial-card {
+    min-width: 280px;
+    max-width: 300px;
+    padding: 22px 18px;
+  }
+}
+
+@media (max-width: 576px) {
+  .testimonial-header {
+    flex-wrap: wrap;
+  }
+
+  .testimonial-rating {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+  .video-cta {
+    flex-direction: column;
+    text-align: center;
+  }
+}

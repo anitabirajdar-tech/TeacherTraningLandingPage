@@ -1,0 +1,319 @@
+﻿/* ================================================
+   BOOKS & KITS SECTION
+   ================================================ */
+
+.books-kits {
+  background: #fff;
+  padding: 90px 0 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Faint diagonal stripe texture */
+.books-kits::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -55deg,
+    transparent,
+    transparent 40px,
+    rgba(102,126,234,.04) 40px,
+    rgba(102,126,234,.04) 41px
+  );
+  pointer-events: none;
+}
+
+/* ─── Header ─── */
+.bk-header {
+  text-align: center;
+  margin-bottom: 64px;
+  position: relative;
+}
+
+.bk-grad {
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Two-column layout ─── */
+.bk-layout {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 56px;
+  align-items: start;
+  position: relative;
+}
+
+/* ================================================
+   KIT SHOWCASE (left column)
+   ================================================ */
+
+.bk-showcase {
+  position: sticky;
+  top: 110px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: bkSlideIn 0.7s cubic-bezier(.22,1,.36,1) both;
+}
+
+@keyframes bkSlideIn {
+  from { opacity: 0; transform: translateX(-36px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Dark premium kit card */
+.bk-kit-card {
+  background: linear-gradient(145deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+  border-radius: 24px;
+  padding: 40px 32px 36px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(15,52,96,.4);
+}
+
+/* Subtle glow orbs inside */
+.bk-kit-card::before,
+.bk-kit-card::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.bk-kit-card::before {
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(102,126,234,.25), transparent 70%);
+  top: -60px; left: -60px;
+}
+.bk-kit-card::after {
+  width: 160px; height: 160px;
+  background: radial-gradient(circle, rgba(118,75,162,.25), transparent 70%);
+  bottom: -50px; right: -40px;
+}
+
+.bk-kit-ribbon {
+  display: inline-block;
+  background: linear-gradient(90deg, #f7971e, #ff6b35);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 5px 18px;
+  border-radius: 50px;
+  margin-bottom: 28px;
+  position: relative;
+}
+
+/* Floating emoji row */
+.bk-kit-icons {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 22px;
+  position: relative;
+}
+
+.bki {
+  display: inline-block;
+  font-size: 2.8rem;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,.5));
+  animation: bkFloat 3s ease-in-out infinite;
+}
+.bki-1 { animation-delay: 0s;    font-size: 3.4rem; }
+.bki-2 { animation-delay: 0.25s; }
+.bki-3 { animation-delay: 0.5s;  font-size: 3.1rem; }
+.bki-4 { animation-delay: 0.75s; }
+.bki-5 { animation-delay: 1s;    font-size: 3.2rem; }
+
+@keyframes bkFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+.bk-kit-label {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 6px;
+  position: relative;
+}
+.bk-kit-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,.55);
+  margin: 0 0 24px;
+  position: relative;
+}
+
+/* Pills row */
+.bk-kit-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+}
+.bk-kit-pills span {
+  background: rgba(255,255,255,.1);
+  color: rgba(255,255,255,.85);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 50px;
+  border: 1px solid rgba(255,255,255,.15);
+  backdrop-filter: blur(4px);
+}
+
+/* Brand promise card */
+.bk-promise {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: linear-gradient(135deg, #edfff5 0%, #d4f7e5 100%);
+  border: 1.5px solid #7ed9aa;
+  border-radius: 16px;
+  padding: 18px 20px;
+}
+.bk-promise-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.bk-promise strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 800;
+  color: #1b6b3a;
+  margin-bottom: 4px;
+}
+.bk-promise p {
+  font-size: 12.5px;
+  color: #2e7d52;
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* ================================================
+   MATERIAL CARDS (right column)
+   ================================================ */
+
+.bk-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.bk-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: #fff;
+  border: 1.5px solid #ebebeb;
+  border-left: 5px solid var(--mc);
+  border-radius: 16px;
+  padding: 20px 22px 20px 18px;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  transition: transform .28s ease, box-shadow .28s ease;
+  animation: bkCardUp 0.5s cubic-bezier(.22,1,.36,1) calc(var(--i,0) * 90ms) both;
+}
+
+@keyframes bkCardUp {
+  from { opacity: 0; transform: translateX(28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Shimmer sweep */
+.bk-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.5) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform .45s ease;
+  pointer-events: none;
+}
+.bk-card:hover::after { transform: translateX(100%); }
+
+.bk-card:hover {
+  transform: translateX(8px);
+  box-shadow: 5px 8px 28px rgba(0,0,0,.09);
+  border-color: var(--mc);
+}
+
+/* Icon circle */
+.bk-card-icon {
+  min-width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--mc) 13%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  flex-shrink: 0;
+  transition: transform .28s ease, background .28s ease;
+}
+.bk-card:hover .bk-card-icon {
+  transform: scale(1.12) rotate(-4deg);
+  background: color-mix(in srgb, var(--mc) 22%, transparent);
+}
+
+.bk-card-body { flex: 1; }
+.bk-card-body h3 {
+  font-size: 15.5px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 5px;
+}
+.bk-card-body p {
+  font-size: 13px;
+  color: #777;
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* Faded number badge */
+.bk-card-num {
+  font-size: 32px;
+  font-weight: 900;
+  font-family: Georgia, serif;
+  color: color-mix(in srgb, var(--mc) 16%, transparent);
+  flex-shrink: 0;
+  line-height: 1;
+  user-select: none;
+  transition: color .28s;
+}
+.bk-card:hover .bk-card-num {
+  color: color-mix(in srgb, var(--mc) 42%, transparent);
+}
+
+/* ================================================
+   RESPONSIVE
+   ================================================ */
+
+@media (max-width: 1024px) {
+  .bk-layout { grid-template-columns: 360px 1fr; gap: 40px; }
+}
+
+@media (max-width: 900px) {
+  .bk-layout { grid-template-columns: 1fr; gap: 44px; }
+  .bk-showcase { position: static; }
+  .bk-kit-card { max-width: 440px; margin: 0 auto; }
+}
+
+@media (max-width: 600px) {
+  .books-kits { padding: 60px 0 70px; }
+  .bk-kit-card { padding: 28px 20px 24px; }
+  .bki { font-size: 2.2rem; }
+  .bki-1 { font-size: 2.7rem; }
+  .bk-card { padding: 16px 16px 16px 14px; gap: 12px; }
+  .bk-card-icon { min-width: 48px; height: 48px; font-size: 24px; }
+  .bk-card-num { font-size: 26px; }
+}

@@ -1,0 +1,190 @@
+/* ============================================================
+   HERO  —  Shraddha Institute 2026  |  Blue Gradient Design
+   ============================================================ */
+
+.hero {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  padding-top: 70px;
+  overflow: hidden;
+  color: #fff;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #0a1e5e 0%, #1a3a8a 40%, #2556b8 70%, #1a3a8a 100%);
+  z-index: 0;
+}
+
+/* Two-column grid */
+.hero-grid {
+  position: relative;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  padding: 32px 60px 44px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* LEFT: Content */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: flex-start;
+  text-align: left;
+}
+
+/* Title */
+.h-title {
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1.2;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.h-accent {
+  color: #fff;
+}
+
+.h-title-highlight {
+  color: #ffd700;
+  font-weight: 900;
+  font-style: italic;
+}
+
+/* Subtitle */
+.h-sub {
+  font-size: 0.98rem;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.6;
+  margin: 0 0 16px;
+  font-weight: 600;
+}
+.h-sub strong { color: #ffd700; }
+
+/* Check list */
+.h-checks {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.h-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 600;
+}
+
+.h-check-icon {
+  color: #ffd700;
+  font-weight: 900;
+  font-size: 1.1rem;
+}
+
+/* CTA Buttons */
+.h-btns {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.btn-hero-apply {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ff6b35;
+  color: #fff;
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 16px rgba(255,107,53,0.4);
+}
+
+.btn-hero-apply:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255,107,53,0.5);
+}
+
+.btn-hero-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #25d366;
+  color: #fff;
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 16px rgba(37,211,102,0.4);
+}
+
+.btn-hero-whatsapp:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(37,211,102,0.5);
+}
+
+/* RIGHT: Photo */
+.hero-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.hero-photo {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 16px;
+  object-fit: contain;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 24px 24px 36px;
+    max-width: 600px;
+  }
+  .hero-visual { order: -1; }
+  .hero-content { align-items: center; text-align: center; }
+  .h-checks { align-items: center; }
+  .h-btns { justify-content: center; }
+  .h-title { font-size: 1.7rem; }
+  .hero-photo { max-width: 300px; }
+}
+
+@media (max-width: 480px) {
+  .hero { padding-top: 60px; }
+  .hero-grid { padding: 16px 16px 28px; }
+  .h-title { font-size: 1.4rem; }
+  .h-sub { font-size: 0.95rem; }
+  .h-btns { flex-direction: column; align-items: stretch; gap: 10px; }
+  .btn-hero-apply, .btn-hero-whatsapp {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 20px;
+  }
+  .hero-photo { max-width: 280px; }
+}
