@@ -1,6 +1,6 @@
 .footer {
-  background: var(--secondary-color);
-  color: white;
+  background: white;
+  color: #333;
   padding: 60px 0 20px;
 }
 
@@ -9,7 +9,7 @@
   grid-template-columns: 2fr 1fr 1fr 1.5fr;
   gap: 40px;
   padding-bottom: 40px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .footer-logo {
@@ -20,9 +20,18 @@
   font-weight: 700;
   margin-bottom: 15px;
   /* dark pill behind logo for white text */
-  background: #1a1a2e;
   padding: 6px 12px;
   border-radius: 6px;
+}
+
+.footer-logo-link {
+  display: inline-block;
+}
+
+.footer-logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
 }
 
 .footer-logo .logo-icon {
@@ -36,7 +45,7 @@
   font-weight: 700;
 }
 .footer-description {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(0, 0, 0, 0.7);
   line-height: 1.7;
   font-size: 0.95rem;
 }
@@ -67,7 +76,7 @@
 }
 
 .footer-links ul li a {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(0, 0, 0, 0.7);
   font-size: 0.95rem;
   transition: all 0.3s ease;
 }
@@ -87,7 +96,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(0, 0, 0, 0.7);
   font-size: 0.95rem;
 }
 
@@ -103,7 +112,7 @@
 }
 
 .footer-bottom p {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(0, 0, 0, 0.6);
   font-size: 0.9rem;
 }
 

@@ -5,6 +5,7 @@ import { useLanguage } from '../context/LanguageContext'
 const BooksKits = () => {
   const { t } = useLanguage()
   const b = t.booksKits
+  const f = t.franchise
   const materials = b.materials
 
   return (
@@ -56,6 +57,54 @@ const BooksKits = () => {
                 <div className="bk-card-num">{String(i + 1).padStart(2, '0')}</div>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* App Access Banner */}
+        <div className="bk-app-banner">
+          <div className="bk-app-left">
+            <span className="bk-app-badge">📱 Exclusive Access</span>
+            <h3>Shraddha Institute Learning App</h3>
+            <p>Every certified teacher gets <strong>lifetime access</strong> to our mobile app — packed with recorded Abacus &amp; Vedic Math video lessons, worksheets, and teaching resources, available anytime, anywhere.</p>
+            <ul className="bk-app-perks">
+              <li>🎬 Recorded video lectures — Abacus &amp; Vedic Math</li>
+              <li>📂 Downloadable worksheets &amp; exam papers</li>
+              <li>🔔 New content updates &amp; notifications</li>
+              <li>📡 Works offline after download</li>
+            </ul>
+            <a
+              href={f.appLink || 'https://play.google.com/store/apps/details?id=co.groot.nitc&pcampaignid=web_share'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bk-app-btn"
+            >
+              📲 Download the App
+            </a>
+          </div>
+          <div className="bk-app-right">
+            <div className="bk-app-marquee-wrap">
+              <div className="bk-app-marquee-track">
+                {[
+                  '/images/app/app.webp',
+                  '/images/app/app1.webp',
+                  '/images/app/app3.webp',
+                  '/images/app/app4.webp',
+                  '/images/app/app5.webp',
+                  '/images/app/app.webp',
+                  '/images/app/app1.webp',
+                  '/images/app/app3.webp',
+                  '/images/app/app4.webp',
+                  '/images/app/app5.webp',
+                ].map((src, i) => (
+                  <img
+                    key={i}
+                    src={src}
+                    alt={`App screenshot ${(i % 5) + 1}`}
+                    className="bk-app-screenshot"
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

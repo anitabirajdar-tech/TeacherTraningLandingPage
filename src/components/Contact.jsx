@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Contact.css'
 import { useLanguage } from '../context/LanguageContext'
+import { supabase } from '../lib/supabase'
 
 const Contact = () => {
   const { t } = useLanguage()
@@ -15,13 +16,41 @@ const Contact = () => {
     program: 'abacus',
     message: ''
   })
+  const [submitStatus, setSubmitStatus] = useState(null) // 'saving' | 'done' | 'error'
+  const [submitError,  setSubmitError]  = useState('')
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setSubmitStatus('saving')
+
+    // Save lead to Supabase
+    try {
+      const { error } = await supabase.from('leads').insert({
+        name:    formData.name,
+        phone:   formData.phone,
+        email:   formData.email  || null,
+        city:    formData.city,
+        program: formData.program,
+        message: formData.message || null,
+        status:  'new',
+        source:  'website_form',
+      })
+      if (error) {
+        console.error('Supabase insert error:', error)
+        setSubmitError('Could not save your enquiry: ' + error.message)
+        setSubmitStatus('error')
+        return
+      }
+    } catch (err) {
+      console.error('Unexpected error:', err)
+      setSubmitError('Network error — please try again or contact us on WhatsApp.')
+      setSubmitStatus('error')
+      return
+    }
 
     const programMap = {
       abacus: form.programs.abacus,
@@ -49,6 +78,8 @@ const Contact = () => {
     window.open(waUrl, '_blank', 'noopener,noreferrer')
 
     setFormData({ name: '', email: '', phone: '', city: '', program: 'abacus', message: '' })
+    setSubmitStatus('done')
+    setTimeout(() => setSubmitStatus(null), 4000)
   }
 
   return (
@@ -202,9 +233,20 @@ const Contact = () => {
                 ></textarea>
               </div>
 
-              <button type="submit" className="btn btn-primary btn-submit">
-                {form.submitBtn}
+              <button type="submit" className="btn btn-primary btn-submit" disabled={submitStatus === 'saving'}>
+                {submitStatus === 'saving' ? '⏳ Submitting...' : form.submitBtn}
               </button>
+
+              {submitStatus === 'done' && (
+                <p style={{ color: '#10b981', fontWeight: 700, textAlign: 'center', marginTop: 10 }}>
+                  ✅ Enquiry submitted! Our team will contact you soon.
+                </p>
+              )}
+              {submitStatus === 'error' && (
+                <p style={{ color: '#ef4444', fontWeight: 700, textAlign: 'center', marginTop: 10 }}>
+                  ⚠️ {submitError}
+                </p>
+              )}
 
               <p className="form-disclaimer">
                 🔒 Your information is 100% safe. We will contact you within 24 hours.

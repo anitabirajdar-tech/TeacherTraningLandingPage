@@ -32,7 +32,7 @@
   left: 0;
   width: 100%;
   height: 4px;
-  background: linear-gradient(90deg, #ff6b35, #764ba2);
+  background: linear-gradient(90deg, #ff6b35, #ff6b35);
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
@@ -52,8 +52,11 @@
 }
 .eligibility-icon img {
   width: 100%;
-  height: 160px;
+  /* more vertical space helps tall portraits display better */
+  height: 180px;
   object-fit: cover;
+  /* shift image slightly downward so faces near top aren't cropped */
+  object-position: center 32%;
   border-radius: 10px;
   margin-bottom: 15px;
   display: block;
@@ -76,8 +79,9 @@
   display: flex;
   align-items: center;
   gap: 25px;
-  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
-  color: white;
+  /* faint orange background */
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+  color: #333;
   padding: 30px 40px;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-lg);
@@ -115,3 +119,5 @@
     padding: 25px;
   }
 }
+
+

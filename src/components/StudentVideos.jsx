@@ -2,26 +2,10 @@ import React, { useState } from 'react'
 import './StudentVideos.css'
 
 const videos = [
-  {
-    id: 'HM-kXSKjNLU',
-    label: '🎥 Abacus Speed Demo',
-  },
-  {
-    id: 'HM-kXSKjNLU',
-    label: '🎥 Vedic Math Trick',
-  },
-  {
-    id: 'HM-kXSKjNLU',
-    label: '🎥 Mental Math Calculation',
-  },
-  {
-    id: 'HM-kXSKjNLU',
-    label: '🎥 Competition Speed Round',
-  },
-  {
-    id: 'MxdRV8Uk4p0',
-    label: '🎥 Additional Student Clip',
-  },
+  { id: 'ab9tTWL-aEM', label: '🎥 Student in Action' },
+  { id: 'MxdRV8Uk4p0', label: '🎥 Abacus Speed Demo' },
+  { id: 'uiXpLlSeUvQ', label: '🎥 Mental Math Trick' },
+  { id: 'UKhSATJBBjw', label: '🎥 Competition Round' },
 ]
 
 // Duplicate for seamless infinite loop

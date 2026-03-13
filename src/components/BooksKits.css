@@ -67,13 +67,15 @@
 
 /* Dark premium kit card */
 .bk-kit-card {
-  background: linear-gradient(145deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+  /* use the same soft orange theme */
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
   border-radius: 24px;
   padding: 40px 32px 36px;
   text-align: center;
   position: relative;
   overflow: hidden;
   box-shadow: 0 24px 60px rgba(15,52,96,.4);
+  color: #333;
 }
 
 /* Subtle glow orbs inside */
@@ -316,4 +318,164 @@
   .bk-card { padding: 16px 16px 16px 14px; gap: 12px; }
   .bk-card-icon { min-width: 48px; height: 48px; font-size: 24px; }
   .bk-card-num { font-size: 26px; }
+}
+
+/* ================================================
+   APP ACCESS BANNER
+   ================================================ */
+.bk-app-banner {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  margin-top: 64px;
+  /* soft orange gradient matching location-banner/no-experience-banner */
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+  border-radius: 28px;
+  padding: 48px 52px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(15,52,96,0.35);
+}
+
+.bk-app-banner::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, rgba(255,107,53,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.bk-app-banner::after {
+  content: '';
+  position: absolute;
+  bottom: -60px; left: 40%;
+  width: 220px; height: 220px;
+  background: radial-gradient(circle, rgba(102,126,234,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.bk-app-left {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.bk-app-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #ff6b35, #ff9a5c);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 30px;
+  margin-bottom: 14px;
+  letter-spacing: 0.4px;
+  box-shadow: 0 4px 14px rgba(255,107,53,0.35);
+}
+
+.bk-app-left h3 {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #1a1a2e; /* dark text */
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.bk-app-left > p {
+  color: #333; /* dark paragraph text */
+  font-size: 0.97rem;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.bk-app-left > p strong { color: #ff9a5c; }
+
+.bk-app-perks {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bk-app-perks li {
+  color: #333; /* dark list text */
+  font-size: 0.93rem;
+}
+
+.bk-app-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #ff6b35, #ff9a5c);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 14px 30px;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 8px 28px rgba(255,107,53,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.bk-app-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(255,107,53,0.5);
+}
+
+/* Phone mock — replaced by screenshot marquee */
+.bk-app-right {
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  width: 180px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 20px;
+  /* soft fade top & bottom */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 12%, #000 88%, transparent 100%);
+}
+
+.bk-app-marquee-wrap {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.bk-app-marquee-track {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: bk-app-scroll 18s linear infinite;
+}
+
+.bk-app-marquee-wrap:hover .bk-app-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes bk-app-scroll {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+
+.bk-app-screenshot {
+  width: 100%;
+  border-radius: 14px;
+  display: block;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .bk-app-banner {
+    flex-direction: column;
+    padding: 36px 24px;
+    gap: 32px;
+    text-align: center;
+  }
+  .bk-app-right { align-self: center; }
+  .bk-app-btn { width: 100%; justify-content: center; }
 }

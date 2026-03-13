@@ -1,33 +1,188 @@
 /* =============================================
-   TESTIMONIALS — 3 static cards
+   TESTIMONIALS — Infinite marquee
    ============================================= */
 
 .testimonials {
-  background: #eef2f9;
-  padding: 60px 0;
+  background: #fff; /* remove blue gradient, keep white clean look */
+  padding: 80px 0 60px;
+  overflow: hidden;
+}
+
+/* ── Header ── */
+.tm-header {
+  text-align: center;
+  margin-bottom: 52px;
+}
+
+.tm-header .section-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #ff6b35, #ff9a5c);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 6px 18px;
+  border-radius: 30px;
+  letter-spacing: 0.5px;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 14px rgba(255,107,53,0.35);
 }
 
 .tm-title {
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 900;
-  color: #0a1e5e;
-  margin-bottom: 40px;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 800;
+  color: #1a1a2e; /* changed to dark */
+  margin-bottom: 10px;
 }
 
-.tm-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+.tm-subtitle {
+  font-size: 1rem;
+  color: #444; /* dark grey for readability */
+  max-width: 540px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 
-.tm-card {
-  background: #fff;
-  border-radius: 16px;
+/* ── Marquee wrapper ── */
+.tm-marquee-wrap {
+  width: 100%;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  transition: transform 0.3s, box-shadow 0.3s;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  padding: 12px 0 8px;
+  cursor: pointer;
 }
+
+/* ── Scrolling track ── */
+.tm-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  /* Left → Right: starts at -50% (second copy) and moves back to 0 */
+  animation: tm-scroll 42s linear infinite;
+}
+
+.tm-marquee-wrap:hover .tm-track {
+  animation-play-state: paused;
+}
+
+@keyframes tm-scroll {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+/* ── Individual video card ── */
+.tm-vid-card {
+  flex-shrink: 0;
+  width: 320px;
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.tm-caption {
+  padding: 10px 12px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #333;
+}
+.tm-caption strong { display: block; font-weight: 700; margin-bottom: 4px; }
+.tm-vid-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.4);
+}
+
+.tm-vid-frame {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+  background: #000;
+  cursor: pointer;
+}
+
+.tm-thumb {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+.tm-vid-card:hover .tm-thumb { transform: scale(1.05); }
+
+.tm-play-btn {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: #fff;
+  background: rgba(0,0,0,0.22);
+  transition: background 0.25s;
+  padding-left: 4px;
+}
+.tm-vid-card:hover .tm-play-btn { background: rgba(255,107,53,0.55); }
+
+/* ── Modal ── */
+.tm-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 24px;
+  animation: tm-fadeIn 0.2s ease;
+}
+@keyframes tm-fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.tm-modal-inner {
+  position: relative;
+  width: 90vw;
+  max-width: 900px;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 24px 70px rgba(0,0,0,0.7);
+  animation: tm-scaleIn 0.25s cubic-bezier(0.175,0.885,0.32,1.275);
+}
+@keyframes tm-scaleIn { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+.tm-modal-inner iframe {
+  width: 100%; height: 100%; border: 0;
+}
+
+.tm-modal-close {
+  position: absolute;
+  top: 10px; right: 12px;
+  z-index: 10;
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: #fff;
+  font-size: 1.1rem;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.tm-modal-close:hover { background: #ff6b35; }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .testimonials { padding: 60px 0 40px; }
+  .tm-vid-card  { width: 260px; }
+}
+
 
 .tm-card:hover {
   transform: translateY(-6px);
@@ -114,9 +269,6 @@
   .tm-title { font-size: 1.5rem; }
   .tm-photo-wrap { height: 180px; }
 }
-  font-size: 2.2rem;
-  line-height: 1;
-}
 
 
 @media (max-width: 968px) {
@@ -143,7 +295,7 @@
     width: 100%;
     margin-top: 10px;
   }
-}
+
   .video-cta {
     flex-direction: column;
     text-align: center;

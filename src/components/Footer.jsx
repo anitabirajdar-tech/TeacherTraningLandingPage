@@ -13,8 +13,13 @@ const Footer = () => {
         <div className="footer-content">
           <div className="footer-brand">
             <div className="footer-logo">
-              <span className="logo-icon">🌟</span>
-              <span className="logo-text">Shraddha Institute</span>
+              <a href="#home" className="footer-logo-link">
+                <img
+                  src="/images/gallery/background%20remove.png"
+                  alt="Shraddha Institute logo"
+                  className="footer-logo-img"
+                />
+              </a>
             </div>
             <p className="footer-description">{f.description}</p>
             <div className="footer-trust">

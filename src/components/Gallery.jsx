@@ -61,10 +61,10 @@ const Gallery = () => {
 
         {lightbox && (
           <div className="lightbox" onClick={() => setLightbox(null)}>
-            <div className="lightbox-content" onClick={e => e.stopPropagation()}>
+            <div className="lightbox-inner" onClick={e => e.stopPropagation()}>
               <button className="lightbox-close" onClick={() => setLightbox(null)}>✕</button>
-              <img src={lightbox.src} alt={lightbox.label} />
-              <p>{lightbox.label}</p>
+              <img src={lightbox.src} alt={lightbox.label} className="lightbox-img" />
+              <p style={{ color: '#fff', textAlign: 'center', marginTop: 10, fontSize: '0.9rem' }}>{lightbox.label}</p>
             </div>
           </div>
         )}

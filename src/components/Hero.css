@@ -1,24 +1,133 @@
 /* ============================================================
-   HERO  —  Shraddha Institute 2026  |  Blue Gradient Design
+   HERO  —  hero1.png full-width image + buttons below
    ============================================================ */
 
 .hero {
   position: relative;
-  min-height: 60vh;
-  display: flex;
-  align-items: center;
-  padding-top: 70px;
+  padding-top: 70px; /* offset for fixed header */
+  background: #fff;
   overflow: hidden;
-  color: #fff;
-  font-family: 'Inter', 'Segoe UI', sans-serif;
 }
 
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, #0a1e5e 0%, #1a3a8a 40%, #2556b8 70%, #1a3a8a 100%);
-  z-index: 0;
+.hero-img-wrap {
+  position: relative;
+  width: 100%;
+  display: block;
+  max-width: 1450px;
+  margin: 0 auto;
 }
+
+.hero-main-img {
+  width: 100%;
+  display: block;
+}
+
+/* Buttons overlaid on the image, bottom-left below the text */
+.hero-btn-bar {
+  position: absolute;
+  bottom: 10%;          /* distance from bottom of image */
+  left: 4%;             /* align with the left text block */
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  z-index: 5;
+}
+
+/* CTA Buttons */
+.btn-hero-apply {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ff6b35;
+  color: #fff;
+  padding: 14px 36px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 16px rgba(255,107,53,0.4);
+}
+
+.btn-hero-apply:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255,107,53,0.5);
+}
+
+.btn-hero-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #25d366;
+  color: #fff;
+  padding: 14px 36px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 16px rgba(37,211,102,0.4);
+}
+
+.btn-hero-whatsapp:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(37,211,102,0.5);
+}
+
+.wa-icon { font-size: 1.1rem; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  /* Pull buttons OUT of the image overlay and place them below */
+  .hero-img-wrap {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-btn-bar {
+    position: static;      /* no longer overlaid */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: #fff;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .btn-hero-apply,
+  .btn-hero-whatsapp {
+    padding: 11px 22px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    white-space: nowrap;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    gap: 6px;
+  }
+
+  .wa-icon { font-size: 1rem; }
+}
+
+@media (max-width: 480px) {
+  .hero { padding-top: 60px; }
+
+  .hero-btn-bar {
+    gap: 10px;
+    padding: 12px 12px;
+  }
+
+  .btn-hero-apply,
+  .btn-hero-whatsapp {
+    padding: 10px 18px;
+    font-size: 0.82rem;
+  }
+
+  .wa-icon { font-size: 0.9rem; }
+}
+
 
 /* Two-column grid */
 .hero-grid {
@@ -58,7 +167,7 @@
 }
 
 .h-title-highlight {
-  color: #ffd700;
+  color: #FDEE00;
   font-weight: 900;
   font-style: italic;
 }
@@ -71,7 +180,7 @@
   margin: 0 0 16px;
   font-weight: 600;
 }
-.h-sub strong { color: #ffd700; }
+.h-sub strong { color: #FDEE00; }
 
 /* Check list */
 .h-checks {
@@ -145,18 +254,87 @@
   box-shadow: 0 8px 24px rgba(37,211,102,0.5);
 }
 
-/* RIGHT: Photo */
+/* RIGHT: Slider */
 .hero-visual {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.hero-photo {
+.hero-slider {
+  position: relative;
   width: 100%;
-  max-width: 420px;
+  max-width: 460px;
+  aspect-ratio: 4 / 3;
   border-radius: 16px;
-  object-fit: contain;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+.hero-slide--active {
+  opacity: 1;
+}
+
+/* Arrows */
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  padding: 0;
+}
+.slider-arrow:hover { background: rgba(0,0,0,0.7); }
+.slider-arrow--prev { left: 10px; }
+.slider-arrow--next { right: 10px; }
+
+/* Dots */
+.slider-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.slider-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.5);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.slider-dot--active {
+  background: #fff;
+  transform: scale(1.3);
 }
 
 /* ── Responsive ── */
@@ -172,7 +350,7 @@
   .h-checks { align-items: center; }
   .h-btns { justify-content: center; }
   .h-title { font-size: 1.7rem; }
-  .hero-photo { max-width: 300px; }
+  .hero-slider { max-width: 100%; }
 }
 
 @media (max-width: 480px) {
@@ -186,5 +364,6 @@
     justify-content: center;
     padding: 14px 20px;
   }
-  .hero-photo { max-width: 280px; }
+  .hero-slider { border-radius: 10px; }
+  .slider-arrow { width: 30px; height: 30px; font-size: 1.2rem; }
 }

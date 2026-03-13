@@ -51,7 +51,8 @@
 
 /* ── Individual card ── */
 .sv-card {
-  width: 260px;
+  /* slightly wider cards so thumbnails are more legible */
+  width: 320px;
   flex-shrink: 0;
   cursor: pointer;
   transition: transform 0.2s;
@@ -108,7 +109,7 @@
   text-align: center;
   font-size: 0.88rem;
   font-weight: 700;
-  color: rgba(255,255,255,0.88);
+  color: #333;
 }
 
 /* ── Modal ── */
@@ -125,8 +126,8 @@
 
 .sv-modal-inner {
   position: relative;
-  width: 100%;
-  max-width: 800px;
+  width: 90vw;
+  max-width: 1000px; /* larger on wide screens */
   aspect-ratio: 16 / 9;
   background: #000;
   border-radius: 14px;
@@ -166,5 +167,5 @@
 /* ── Responsive ── */
 @media (max-width: 600px) {
   .sv-title { font-size: 1.4rem; }
-  .sv-card { width: 200px; }
+  .sv-card { width: 240px; }
 }
