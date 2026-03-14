@@ -1,12 +1,36 @@
-import React from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import './BooksKits.css'
 import { useLanguage } from '../context/LanguageContext'
+
+const BOOK_SLIDES = [
+  { src: '/images/books/Abacus Foundation.jpeg', alt: 'Abacus Foundation' },
+  { src: '/images/books/abacus level 1.jpeg',    alt: 'Abacus Level 1' },
+  { src: '/images/books/abacus level4.jpeg',     alt: 'Abacus Level 4' },
+  { src: '/images/books/abacus level5.jpeg',     alt: 'Abacus Level 5' },
+  { src: '/images/books/vedic level1.jpeg',      alt: 'Vedic Math Level 1' },
+  { src: '/images/books/vedic level3.jpeg',      alt: 'Vedic Math Level 3' },
+  { src: '/images/books/vedic level4.jpeg',      alt: 'Vedic Math Level 4' },
+]
 
 const BooksKits = () => {
   const { t } = useLanguage()
   const b = t.booksKits
   const f = t.franchise
   const materials = b.materials
+
+  const [current, setCurrent] = useState(0)
+  const [paused, setPaused] = useState(false)
+
+  const next = useCallback(() =>
+    setCurrent(c => (c + 1) % BOOK_SLIDES.length), [])
+  const prev = useCallback(() =>
+    setCurrent(c => (c - 1 + BOOK_SLIDES.length) % BOOK_SLIDES.length), [])
+
+  useEffect(() => {
+    if (paused) return
+    const id = setInterval(next, 2800)
+    return () => clearInterval(id)
+  }, [paused, next])
 
   return (
     <section className="books-kits section" id="books-kits">
@@ -22,20 +46,35 @@ const BooksKits = () => {
 
         <div className="bk-layout">
           <div className="bk-showcase">
-            <div className="bk-kit-card">
-              <div className="bk-kit-ribbon">{b.ribbon}</div>
-              <div className="bk-kit-icons">
-                <span className="bki bki-1">📚</span>
-                <span className="bki bki-2">📘</span>
-                <span className="bki bki-3">📗</span>
-                <span className="bki bki-4">📙</span>
-                <span className="bki bki-5">🧮</span>
+            <div
+              className="bk-slider"
+              onMouseEnter={() => setPaused(true)}
+              onMouseLeave={() => setPaused(false)}
+            >
+              <div className="bk-slider-track" style={{ transform: `translateX(-${current * 100}%)` }}>
+                {BOOK_SLIDES.map((slide, i) => (
+                  <img
+                    key={i}
+                    src={slide.src}
+                    alt={slide.alt}
+                    className="bk-slide-img"
+                    draggable={false}
+                  />
+                ))}
               </div>
-              <p className="bk-kit-label">{b.kitLabel}</p>
-              <p className="bk-kit-sub">{b.kitSub}</p>
-              <div className="bk-kit-pills">
-                {b.pills.map((p, i) => <span key={i}>{p}</span>)}
+              <button className="bk-slider-btn bk-slider-prev" onClick={prev} aria-label="Previous">&#8249;</button>
+              <button className="bk-slider-btn bk-slider-next" onClick={next} aria-label="Next">&#8250;</button>
+              <div className="bk-slider-dots">
+                {BOOK_SLIDES.map((_, i) => (
+                  <button
+                    key={i}
+                    className={`bk-dot${i === current ? ' bk-dot-active' : ''}`}
+                    onClick={() => setCurrent(i)}
+                    aria-label={`Slide ${i + 1}`}
+                  />
+                ))}
               </div>
+              <div className="bk-slide-caption">{BOOK_SLIDES[current].alt}</div>
             </div>
             <div className="bk-promise">
               <span className="bk-promise-icon">🏅</span>

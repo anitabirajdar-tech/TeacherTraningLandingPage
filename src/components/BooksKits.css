@@ -201,6 +201,109 @@
 }
 
 /* ================================================
+   BOOK PHOTO SLIDER (left column)
+   ================================================ */
+
+.bk-slider {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 56px rgba(15,52,96,.22);
+  background: #f5f0eb;
+  aspect-ratio: 3 / 4;
+  max-width: 100%;
+  user-select: none;
+}
+
+.bk-slider-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(.42,0,.58,1);
+}
+
+.bk-slide-img {
+  min-width: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: #fff;
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
+/* Nav buttons */
+.bk-slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,.85);
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  font-size: 1.6rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(0,0,0,.18);
+  transition: background .2s, transform .2s;
+  z-index: 2;
+  padding: 0;
+  color: #333;
+}
+.bk-slider-btn:hover {
+  background: #fff;
+  transform: translateY(-50%) scale(1.1);
+}
+.bk-slider-prev { left: 10px; }
+.bk-slider-next { right: 10px; }
+
+/* Dot indicators */
+.bk-slider-dots {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 2;
+}
+.bk-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,.55);
+  cursor: pointer;
+  padding: 0;
+  transition: background .25s, transform .25s;
+}
+.bk-dot-active {
+  background: #fff;
+  transform: scale(1.35);
+}
+
+/* Slide caption */
+.bk-slide-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,.55));
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  padding: 28px 12px 12px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ================================================
    MATERIAL CARDS (right column)
    ================================================ */
 

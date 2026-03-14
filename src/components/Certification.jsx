@@ -24,34 +24,12 @@ const Certification = () => {
         <div className="cert-layout">
           <div className="cert-mockup-col">
             <div className="cert-ribbon">{c.ribbon}</div>
-            <div className="certificate-card">
-              <span className="cc-corner cc-tl" /><span className="cc-corner cc-tr" />
-              <span className="cc-corner cc-bl" /><span className="cc-corner cc-br" />
-              <div className="cc-top">
-                <span className="cc-star">⭐</span>
-                <div>
-                  <p className="cc-institute">{c.institute}</p>
-                  <h3 className="cc-title">{c.certTitle}</h3>
-                </div>
-                <span className="cc-star">⭐</span>
-              </div>
-              <div className="cc-rule" />
-              <div className="cc-body">
-                <p className="cc-lbl">{c.certLbl1}</p>
-                <p className="cc-name">{c.certName}</p>
-                <p className="cc-lbl">{c.certLbl2}</p>
-                <p className="cc-program">{c.certProgram}</p>
-                <p className="cc-lbl">{c.certLbl3}</p>
-              </div>
-              <div className="cc-rule" />
-              <div className="cc-foot">
-                <div className="cc-seal"><span>🏆</span><small>Certified</small></div>
-                <div className="cc-sig">
-                  <div className="cc-sig-line" />
-                  <small>{c.certSig}</small>
-                </div>
-                <div className="cc-seal"><span>🎖</span><small>Official</small></div>
-              </div>
+            <div className="cert-img-wrap">
+              <img
+                src="/images/certificate/certificate.jpg"
+                alt="Shraddha Institute Certificate"
+                className="cert-real-img"
+              />
             </div>
             <div className="cert-valid-pill">{c.validPill}</div>
           </div>

@@ -17,7 +17,7 @@ const Hero = () => {
         <div className="hero-btn-bar">
           <a href="#contact" className="btn-hero-apply">{h.btn1}</a>
           <a
-            href="https://wa.me/919168741947"
+            href="https://wa.me/9168756060"
             className="btn-hero-whatsapp"
             target="_blank"
             rel="noopener noreferrer"

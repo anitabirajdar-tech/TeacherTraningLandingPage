@@ -116,7 +116,7 @@ const Contact = () => {
                 <span className="method-icon">📲</span>
                 <div className="method-info">
                   <span className="method-label">{c.waLabel}</span>
-                  <span className="method-value">+91 91687 56060</span>
+                  <span className="method-value">+91 84468 89966</span>
                   <span className="method-hint">{c.waHint}</span>
                 </div>
               </a>
@@ -134,8 +134,8 @@ const Contact = () => {
               <h4>{c.waInstTitle}</h4>
               <p dangerouslySetInnerHTML={{ __html: c.waInstText }} />
               {' '}
-              <a href="https://wa.me/919168756060?text=Hello" target="_blank" rel="noopener noreferrer">
-                <strong>9168756060</strong>
+              <a href="https://wa.me/918446889966?text=Hello" target="_blank" rel="noopener noreferrer">
+                <strong>8446889966</strong>
               </a>
               {' '}
               <p>{c.waInstText2}</p>
