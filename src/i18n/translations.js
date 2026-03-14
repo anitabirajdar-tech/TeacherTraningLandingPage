@@ -172,8 +172,8 @@ const translations = {
     },
     testimonials: {
       badge: '💬 What Our Certified Teachers Say',
-      title: 'What Our Teachers Say',
-      subtitle: 'Certified teachers across India sharing their experience with Shraddha Institute',
+      title: 'Our Successful Teachers',
+      subtitle: 'Certified teachers across India sharing their success stories with Shraddha Institute',
       items: [
         { name: 'Mrs. Dipmala Kolekar', location: 'Solapur, Maharashtra', video: 'https://www.youtube.com/embed/j2BhjPrefHQ' },
         { name: 'Mrs. Aarti Lalbige', location: 'pune, Maharashtra', video: 'https://www.youtube.com/embed/AulQ5dqXOxw' },
@@ -531,9 +531,9 @@ const translations = {
       ],
     },
     testimonials: {
-      badge: '💬 हमारे प्रमाणित शिक्षक क्या कहते हैं',
-      title: 'हमारे शिक्षक क्या कहते हैं',
-      subtitle: 'पूरे भारत में प्रमाणित शिक्षक श्रद्धा इंस्टिट्यूट के साथ अपने अनुभव साझा कर रहे हैं',
+      badge: '💬 हमारे सफल शिक्षक',
+      title: 'हमारे सफल शिक्षक',
+      subtitle: 'पूरे भारत के प्रमाणित शिक्षक श्रद्धा इंस्टिट्यूट के साथ अपनी सफलता की कहानियां साझा कर रहे हैं',
       items: [
         { name: 'Mrs. Dipmala Kolekar', location: 'पुणे, महाराष्ट्र', video: 'https://www.youtube.com/embed/-Y0gtpf7mNQ' },
         { name: 'Mrs. Aarti Lalbige', location: 'कोल्हापुर, महाराष्ट्र', video: 'https://www.youtube.com/embed/AulQ5dqXOxw' },
@@ -908,9 +908,9 @@ const translations = {
       ],
     },
     testimonials: {
-      badge: '💬 आमचे प्रमाणित शिक्षक काय म्हणतात',
-      title: 'आमचे शिक्षक काय म्हणतात',
-      subtitle: 'संपूर्ण भारतातील प्रमाणित शिक्षक श्रद्धा इन्स्टिट्यूटसोबतचे त्यांचे अनुभव सामायिक करत आहेत',
+      badge: '💬 आमचे यशस्वी शिक्षक',
+      title: 'आमचे यशस्वी शिक्षक',
+      subtitle: 'संपूर्ण भारतातील प्रमाणित शिक्षक श्रद्धा इन्स्टिट्यूटसोबत त्यांच्या यशोगाथा शेअर करत आहेत',
       items: [
         { name: 'Mrs. Dipmala Kolekar', location: 'पुणे, महाराष्ट्र', video: 'https://www.youtube.com/embed/-Y0gtpf7mNQ' },
         { name: 'Mrs. Aarti Lalbige', location: 'कोल्हापुर, महाराष्ट्र', video: 'https://www.youtube.com/embed/AulQ5dqXOxw' },
