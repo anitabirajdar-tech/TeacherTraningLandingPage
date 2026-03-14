@@ -4,9 +4,9 @@ import translations from '../i18n/translations'
 const LanguageContext = createContext(null)
 
 export const LANGUAGES = [
-  { code: 'en', label: 'English', flag: '🌐' },
-  { code: 'hi', label: 'हिंदी', flag: '🇮🇳' },
-  { code: 'mr', label: 'मराठी', flag: '🇮🇳' },
+  { code: 'en', label: 'English' },
+  { code: 'hi', label: 'हिंदी' },
+  { code: 'mr', label: 'मराठी'},
 ]
 
 export const LanguageProvider = ({ children }) => {
