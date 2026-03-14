@@ -29,6 +29,8 @@ const PROGRAM_LABELS = {
   franchise: 'Franchise',
 }
 
+const EMPTY_FORM = { name: '', phone: '', email: '', city: '', program: 'abacus', source_name: '', assigned_to: '', notes: '' }
+
 function fmtDate(d) {
   if (!d) return null
   return new Date(d + 'T00:00:00').toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: '2-digit' })
@@ -55,6 +57,12 @@ export default function Dashboard() {
   const [filterAssigned, setFilterAssigned] = useState('')
   const [newAlert,       setNewAlert]       = useState(null)
   const [saving,         setSaving]         = useState(null)
+
+  // Add lead modal state
+  const [showAddModal, setShowAddModal] = useState(false)
+  const [addForm,      setAddForm]      = useState(EMPTY_FORM)
+  const [addSaving,    setAddSaving]    = useState(false)
+  const [addError,     setAddError]     = useState('')
 
   // Inline edit states
   const [editNotes,   setEditNotes]   = useState({})  // id → string
@@ -129,6 +137,37 @@ export default function Dashboard() {
   const saveAssigned = async (id) => {
     await patchLead(id, { assigned_to: editAssigned[id] || null })
     setEditAssigned(prev => { const n = { ...prev }; delete n[id]; return n })
+  }
+
+  /* ── add new lead ── */
+  const handleAddLead = async (e) => {
+    e.preventDefault()
+    if (!addForm.name.trim() || !addForm.phone.trim() || !addForm.city.trim()) {
+      setAddError('Name, Phone and City are required.')
+      return
+    }
+    setAddSaving(true)
+    setAddError('')
+    const { error } = await supabase.from('leads').insert([{
+      name:        addForm.name.trim(),
+      phone:       addForm.phone.trim(),
+      email:       addForm.email.trim() || null,
+      city:        addForm.city.trim(),
+      program:     addForm.program,
+      source_name: addForm.source_name || null,
+      source:      addForm.source_name || 'Manual Entry',
+      assigned_to: addForm.assigned_to.trim() || null,
+      notes:       addForm.notes.trim() || null,
+      status:      'new',
+    }])
+    setAddSaving(false)
+    if (error) {
+      setAddError('Failed to add lead. Please try again.')
+    } else {
+      setShowAddModal(false)
+      setAddForm(EMPTY_FORM)
+      fetchLeads()
+    }
   }
 
   /* ── export CSV ── */
@@ -227,13 +266,16 @@ export default function Dashboard() {
 
   // ─────────────────── DASHBOARD ───────────────────
   return (
-    <div className="crm-wrap">
+    <>
 
       {/* ── TOPBAR ── */}
+      <div className="crm-wrap">
       <header className="crm-topbar">
         <span className="crm-brand">
           <img src="/images/gallery/background%20remove.png" alt="Shraddha" className="crm-topbar-logo" />
-          Shraddha CRM
+          <span className="crm-brand-text">
+           
+          </span>
         </span>
 
         {newAlert && (
@@ -377,6 +419,7 @@ export default function Dashboard() {
             onChange={e => setFilterAssigned(e.target.value)}
           />
           <button className="crm-btn crm-btn-primary" onClick={fetchLeads}>🔄 Refresh</button>
+          <button className="crm-btn crm-btn-add" onClick={() => setShowAddModal(true)}>➕ Add New Lead</button>
           <span className="crm-count">{filteredLeads.length} leads</span>
         </div>
 
@@ -618,5 +661,74 @@ export default function Dashboard() {
         )}
       </div>
     </div>
+
+    {/* ── ADD LEAD MODAL ── */}
+    {showAddModal && (
+      <div className="crm-modal-overlay" onClick={e => e.target === e.currentTarget && setShowAddModal(false)}>
+        <div className="crm-modal">
+          <div className="crm-modal-header">
+            <h3>➕ Add New Lead</h3>
+            <button className="crm-modal-close" onClick={() => { setShowAddModal(false); setAddForm(EMPTY_FORM); setAddError('') }}>✕</button>
+          </div>
+          <form onSubmit={handleAddLead}>
+            <div className="crm-modal-body">
+              {addError && <div className="crm-modal-error">{addError}</div>}
+              <div className="crm-form-row">
+                <div className="crm-form-group">
+                  <label className="crm-form-label">Name <span className="crm-req">*</span></label>
+                  <input className="crm-form-input" type="text" required placeholder="Full name" value={addForm.name} onChange={e => setAddForm(f => ({ ...f, name: e.target.value }))} />
+                </div>
+                <div className="crm-form-group">
+                  <label className="crm-form-label">Phone <span className="crm-req">*</span></label>
+                  <input className="crm-form-input" type="tel" required placeholder="9876543210" value={addForm.phone} onChange={e => setAddForm(f => ({ ...f, phone: e.target.value }))} />
+                </div>
+              </div>
+              <div className="crm-form-row">
+                <div className="crm-form-group">
+                  <label className="crm-form-label">Email</label>
+                  <input className="crm-form-input" type="email" placeholder="email@example.com" value={addForm.email} onChange={e => setAddForm(f => ({ ...f, email: e.target.value }))} />
+                </div>
+                <div className="crm-form-group">
+                  <label className="crm-form-label">City <span className="crm-req">*</span></label>
+                  <input className="crm-form-input" type="text" required placeholder="City" value={addForm.city} onChange={e => setAddForm(f => ({ ...f, city: e.target.value }))} />
+                </div>
+              </div>
+              <div className="crm-form-row">
+                <div className="crm-form-group">
+                  <label className="crm-form-label">Program <span className="crm-req">*</span></label>
+                  <select className="crm-form-input" required value={addForm.program} onChange={e => setAddForm(f => ({ ...f, program: e.target.value }))}>
+                    {Object.entries(PROGRAM_LABELS).map(([v, l]) => <option key={v} value={v}>{l}</option>)}
+                  </select>
+                </div>
+                <div className="crm-form-group">
+                  <label className="crm-form-label">Source</label>
+                  <select className="crm-form-input" value={addForm.source_name} onChange={e => setAddForm(f => ({ ...f, source_name: e.target.value }))}>
+                    <option value="">Select source…</option>
+                    {SOURCES.map(s => <option key={s} value={s}>{s}</option>)}
+                  </select>
+                </div>
+              </div>
+              <div className="crm-form-row">
+                <div className="crm-form-group">
+                  <label className="crm-form-label">Assigned To</label>
+                  <input className="crm-form-input" type="text" placeholder="Team member name" value={addForm.assigned_to} onChange={e => setAddForm(f => ({ ...f, assigned_to: e.target.value }))} />
+                </div>
+              </div>
+              <div className="crm-form-group">
+                <label className="crm-form-label">Notes</label>
+                <textarea className="crm-form-input crm-form-textarea" rows={3} placeholder="Any initial notes…" value={addForm.notes} onChange={e => setAddForm(f => ({ ...f, notes: e.target.value }))} />
+              </div>
+            </div>
+            <div className="crm-modal-footer">
+              <button type="button" className="crm-btn crm-btn-ghost" onClick={() => { setShowAddModal(false); setAddForm(EMPTY_FORM); setAddError('') }}>Cancel</button>
+              <button type="submit" className="crm-btn crm-btn-primary" disabled={addSaving}>
+                {addSaving ? '⏳ Saving…' : '➕ Save Lead'}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    )}
+  </>
   )
 }
